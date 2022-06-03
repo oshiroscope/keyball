@@ -19,8 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define _QWERTY       0
 #define _AUTO_MOUSE   1
 #define _UTIL         2
-#define _GUI          3
-#define _PREF         4
+#define _PREF         3
 
 #include QMK_KEYBOARD_H
 #include "quantum.h"
@@ -31,16 +30,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC   , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,                                  KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , KC_BSPC  ,
     KC_TAB   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                                  KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_MINS  ,
     KC_LCTL  , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                                  KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_QUOT  ,
-    KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     , KC_LBRC  ,              KC_RBRC, KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , KC_GRV   ,
-    _______  , _______  , KC_TAB   , LT(3,KC_LGUI),KC_LALT,MO(2)    , KC_SPC   ,              KC_ENT , KC_DEL   , _______  , _______  , _______  , KC_EQL   , KC_BSLS 
+    KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     , KC_LBRC  ,              KC_RBRC, KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , KC_EQL   ,
+    _______  , LGUI(KC_L),KC_TAB   , KC_LGUI  , KC_LALT  , MO(_UTIL), KC_SPC   ,              KC_ENT , KC_DEL   , _______  , _______  , _______  , KC_GRV   , KC_BSLS 
   ),
     
   [_AUTO_MOUSE] = LAYOUT_universal(
     KC_ESC   , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,                                  KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , KC_BSPC  ,
     KC_TAB   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                                  KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_MINS  ,
     KC_LCTL  , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                                  KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_QUOT  ,
-    KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     , KC_LBRC  ,              KC_RBRC, KC_N     , KC_M     , KC_BTN1  , KC_BTN3  , KC_BTN2  , KC_GRV   ,
-    _______  , _______  , KC_TAB   , LT(3,KC_LGUI),KC_LALT,MO(2)    , KC_SPC   ,              KC_ENT , KC_DEL   , _______  , _______  , _______  , KC_EQL   , SCRL_MO
+    KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     , KC_LBRC  ,              KC_RBRC, KC_N     , KC_M     , KC_BTN1  , KC_BTN3  , KC_BTN2  , KC_EQL   ,
+    _______  , LGUI(KC_L),KC_TAB   , KC_LGUI  , KC_LALT  , MO(_UTIL), KC_SPC   ,              KC_ENT , KC_DEL   , _______  , _______  , _______  , KC_GRV   , SCRL_MO
   ),
 
   [_UTIL] = LAYOUT_universal(
@@ -49,14 +48,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______  , KC_LEFT  , KC_DOWN  , KC_UP    , KC_RIGHT , _______  ,                                  KC_HOME  , KC_LEFT  , KC_DOWN  , KC_UP    , KC_RIGHT , KC_END   ,
     _______  , KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_F5    , _______  ,            _______  , _______  , KC_BTN4  , KC_BTN1  , KC_BTN3  , KC_BTN2  , KC_BTN5  ,
     _______  , _______  , _______  , _______  , _______  , _______  , _______  ,            _______  , _______  , _______  , _______  , _______  , _______  , _______
-  ),
-
-  [_GUI] = LAYOUT_universal(
-    _______  ,LCTL(LGUI(KC_1)),LCTL(LGUI(KC_2)),LCTL(LGUI(KC_3)),LCTL(LGUI(KC_4)),LCTL(LGUI(KC_5)),LCTL(LGUI(KC_6)),LCTL(LGUI(KC_7)),LCTL(LGUI(KC_8)),LCTL(LGUI(KC_9)),_______,_______,
-    LGUI(KC_TAB),_______, _______  , _______  , _______  , _______  ,                                  _______  , _______  , _______  , _______  , _______  , _______  ,
-    KC_LCTRL , _______  , LSFT(LGUI(KC_S)),_______,_______,_______  ,                                  _______  , LGUI(KC_LEFT),LGUI(KC_DOWN),LGUI(KC_UP),LGUI(KC_RIGHT),_______,
-    _______  , _______  , _______  , _______  , LGUI(KC_V),_______  , _______  ,            _______  , _______  , _______  , _______  , _______  , _______  , _______  ,
-    _______  , _______  , _______  , _______  , _______  , _______  , _______  ,             KC_DEL  , _______  , _______  , _______  , _______  , _______  , _______
   ),
 
   [_PREF] = LAYOUT_universal(
@@ -69,20 +60,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 // clang-format on
 
-layer_state_t layer_state_set_user(layer_state_t state)
-{
-  // Auto enable scroll mode when the highest layer is 4
-  keyball_set_scroll_mode(get_highest_layer(state) == 4);
-  return state;
-}
+// layer_state_t layer_state_set_user(layer_state_t state)
+// {
+//   // Auto enable scroll mode when the highest layer is 3
+//   keyball_set_scroll_mode(get_highest_layer(state) == 3);
+//   return state;
+// }
 
-//static bool mouse_on = false;
 
 report_mouse_t pointing_device_task_user(report_mouse_t report)
 {
   if (report.x > 2 || report.x < -2 || report.y > 2 || report.y < -2)
   {
-    //mouse_on = true;
     layer_on(_AUTO_MOUSE);
   }
 
@@ -91,67 +80,72 @@ report_mouse_t pointing_device_task_user(report_mouse_t report)
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
-  //report_mouse_t currentReport;
 
-  if(!layer_state_is(_AUTO_MOUSE)) return true;
+  if(layer_state_is(_AUTO_MOUSE) && record->event.pressed){
+    switch (keycode)
+    {
+      // escape mouse btns
+      case KC_BTN1:
+      case KC_BTN2:
+      case KC_BTN3:
+      case SCRL_MO:
+        break;
 
-  if(!record->event.pressed) return true;
+      // escape modifier keys
+      case KC_LCTL:
+      case KC_LSFT:
+      case KC_LALT:
+      case KC_LGUI:
+        break;
+
+      default:
+        layer_off(_AUTO_MOUSE);
+        break;
+    }
+  } 
 
   switch (keycode)
   {
-  // case KC_COMMA:
-  //   if (!mouse_on)
-  //     return true;
-  //   currentReport = pointing_device_get_report();
-  //   if (record->event.pressed)
-  //     currentReport.buttons |= MOUSE_BTN1;
-  //   else
-  //     currentReport.buttons &= ~MOUSE_BTN1;
-  //   pointing_device_set_report(currentReport);
-  //   return false;
-
-  // case KC_DOT:
-  //   if (!mouse_on)
-  //     return true;
-  //   currentReport = pointing_device_get_report();
-  //   if (record->event.pressed)
-  //     currentReport.buttons |= MOUSE_BTN3;
-  //   else
-  //     currentReport.buttons &= ~MOUSE_BTN3;
-  //   pointing_device_set_report(currentReport);
-  //   return false;
-
-  // case KC_SLASH:
-  //   if (!mouse_on)
-  //     return true;
-  //   currentReport = pointing_device_get_report();
-  //   if (record->event.pressed)
-  //     currentReport.buttons |= MOUSE_BTN2;
-  //   else
-  //     currentReport.buttons &= ~MOUSE_BTN2;
-  //   pointing_device_set_report(currentReport);
-  //   return false;
-
-    case KC_BTN1:
-    case KC_BTN2:
-    case KC_BTN3:
-    case SCRL_MO:
-      return true;
-
+    case KC_J:
+      if(get_mods() & MOD_MASK_GUI){
+        if(record->event.pressed){
+          tap_code(KC_LEFT);
+        }
+        return false;
+      }
+      break;
+    
+    case KC_K:
+      if(get_mods() & MOD_MASK_GUI){
+        if(record->event.pressed){
+          tap_code(KC_DOWN);
+        }
+        return false;
+      }
+      break;
+    
+    case KC_L:
+      if(get_mods() & MOD_MASK_GUI){
+        if(record->event.pressed){
+          tap_code(KC_UP);
+        }
+        return false;
+      }
+      break;
+    
+    case KC_SCLN:
+      if(get_mods() & MOD_MASK_GUI){
+        if(record->event.pressed){
+          tap_code(KC_RIGHT);
+        }
+        return false;
+      }
+      break;
+    
     default:
-      layer_off(_AUTO_MOUSE);
       break;
   }
-  // switch (keycode) {
-  //     case KC_BTN1:
-  //         if (record->event.pressed && IS_LAYER_ON(2)) {
-  //             mouse_on = off;
-  //         }
-  //         break;
-
-  //     default:
-  //         break;
-  // }
+  
   return true;
 }
 

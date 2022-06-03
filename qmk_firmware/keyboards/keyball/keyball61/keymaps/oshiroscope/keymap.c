@@ -16,21 +16,34 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include QMK_KEYBOARD_H
+#define _QWERTY       0
+#define _AUTO_MOUSE   1
+#define _UTIL         2
+#define _GUI          3
+#define _PREF         4
 
+#include QMK_KEYBOARD_H
 #include "quantum.h"
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [0] = LAYOUT_universal(
+  [_QWERTY] = LAYOUT_universal(
     KC_ESC   , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,                                  KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , KC_BSPC  ,
     KC_TAB   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                                  KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_MINS  ,
     KC_LCTL  , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                                  KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_QUOT  ,
     KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     , KC_LBRC  ,              KC_RBRC, KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , KC_GRV   ,
-    _______  , _______  , KC_TAB   , LT(2,KC_LGUI),KC_LALT,MO(1)    , LT(3,KC_SPC),           KC_ENT , KC_BSPC  , _______  , _______  , _______  , KC_EQL   , KC_DEL
+    _______  , _______  , KC_TAB   , LT(3,KC_LGUI),KC_LALT,MO(2)    , KC_SPC   ,              KC_ENT , KC_DEL   , _______  , _______  , _______  , KC_EQL   , KC_BSLS 
+  ),
+    
+  [_AUTO_MOUSE] = LAYOUT_universal(
+    KC_ESC   , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,                                  KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , KC_BSPC  ,
+    KC_TAB   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                                  KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_MINS  ,
+    KC_LCTL  , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                                  KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_QUOT  ,
+    KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     , KC_LBRC  ,              KC_RBRC, KC_N     , KC_M     , KC_BTN1  , KC_BTN3  , KC_BTN2  , KC_GRV   ,
+    _______  , _______  , KC_TAB   , LT(3,KC_LGUI),KC_LALT,MO(2)    , KC_SPC   ,              KC_ENT , KC_DEL   , _______  , _______  , _______  , KC_EQL   , SCRL_MO
   ),
 
-  [1] = LAYOUT_universal(
+  [_UTIL] = LAYOUT_universal(
     _______  , KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_F5    ,                                  KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , KC_F11   ,
     _______  , KC_Q     , S(KC_DEL), KC_W     , C(KC_K)  , _______  ,                                  _______  , _______  , _______  , _______  , _______  , _______  ,
     _______  , KC_LEFT  , KC_DOWN  , KC_UP    , KC_RIGHT , _______  ,                                  KC_HOME  , KC_LEFT  , KC_DOWN  , KC_UP    , KC_RIGHT , KC_END   ,
@@ -38,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______  , _______  , _______  , _______  , _______  , _______  , _______  ,            _______  , _______  , _______  , _______  , _______  , _______  , _______
   ),
 
-  [2] = LAYOUT_universal(
+  [_GUI] = LAYOUT_universal(
     _______  ,LCTL(LGUI(KC_1)),LCTL(LGUI(KC_2)),LCTL(LGUI(KC_3)),LCTL(LGUI(KC_4)),LCTL(LGUI(KC_5)),LCTL(LGUI(KC_6)),LCTL(LGUI(KC_7)),LCTL(LGUI(KC_8)),LCTL(LGUI(KC_9)),_______,_______,
     LGUI(KC_TAB),_______, _______  , _______  , _______  , _______  ,                                  _______  , _______  , _______  , _______  , _______  , _______  ,
     KC_LCTRL , _______  , LSFT(LGUI(KC_S)),_______,_______,_______  ,                                  _______  , LGUI(KC_LEFT),LGUI(KC_DOWN),LGUI(KC_UP),LGUI(KC_RIGHT),_______,
@@ -46,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______  , _______  , _______  , _______  , _______  , _______  , _______  ,             KC_DEL  , _______  , _______  , _______  , _______  , _______  , _______
   ),
 
-  [3] = LAYOUT_universal(
+  [_PREF] = LAYOUT_universal(
     RGB_TOG  , _______  , _______  , _______  , _______  , _______  ,                                  RGB_M_P  , RGB_M_B  , RGB_M_R  , RGB_M_SW , RGB_M_SN , RGB_M_K  ,
     RGB_MOD  , RGB_HUI  , RGB_SAI  , RGB_VAI  , _______  , _______  ,                                  RGB_M_X  , RGB_M_G  , RGB_M_T  , RGB_M_TW , _______  , _______  ,
     RGB_RMOD , RGB_HUD  , RGB_SAD  , RGB_VAD  , _______  , _______  ,                                  CPI_D1K  , CPI_D100 , CPI_I100 , CPI_I1K  , KBC_SAVE , KBC_RST  ,
@@ -58,18 +71,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 layer_state_t layer_state_set_user(layer_state_t state)
 {
-  // Auto enable scroll mode when the highest layer is 3
-  keyball_set_scroll_mode(get_highest_layer(state) == 3);
+  // Auto enable scroll mode when the highest layer is 4
+  keyball_set_scroll_mode(get_highest_layer(state) == 4);
   return state;
 }
 
-static bool mouse_on = false;
+//static bool mouse_on = false;
 
 report_mouse_t pointing_device_task_user(report_mouse_t report)
 {
   if (report.x > 2 || report.x < -2 || report.y > 2 || report.y < -2)
   {
-    mouse_on = true;
+    //mouse_on = true;
+    layer_on(_AUTO_MOUSE);
   }
 
   return report;
@@ -77,46 +91,56 @@ report_mouse_t pointing_device_task_user(report_mouse_t report)
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
-  report_mouse_t currentReport;
+  //report_mouse_t currentReport;
+
+  if(!layer_state_is(_AUTO_MOUSE)) return true;
+
+  if(!record->event.pressed) return true;
+
   switch (keycode)
   {
-  case KC_COMMA:
-    if (!mouse_on)
-      return true;
-    currentReport = pointing_device_get_report();
-    if (record->event.pressed)
-      currentReport.buttons |= MOUSE_BTN1;
-    else
-      currentReport.buttons &= ~MOUSE_BTN1;
-    pointing_device_set_report(currentReport);
-    return false;
+  // case KC_COMMA:
+  //   if (!mouse_on)
+  //     return true;
+  //   currentReport = pointing_device_get_report();
+  //   if (record->event.pressed)
+  //     currentReport.buttons |= MOUSE_BTN1;
+  //   else
+  //     currentReport.buttons &= ~MOUSE_BTN1;
+  //   pointing_device_set_report(currentReport);
+  //   return false;
 
-  case KC_DOT:
-    if (!mouse_on)
-      return true;
-    currentReport = pointing_device_get_report();
-    if (record->event.pressed)
-      currentReport.buttons |= MOUSE_BTN3;
-    else
-      currentReport.buttons &= ~MOUSE_BTN3;
-    pointing_device_set_report(currentReport);
-    return false;
+  // case KC_DOT:
+  //   if (!mouse_on)
+  //     return true;
+  //   currentReport = pointing_device_get_report();
+  //   if (record->event.pressed)
+  //     currentReport.buttons |= MOUSE_BTN3;
+  //   else
+  //     currentReport.buttons &= ~MOUSE_BTN3;
+  //   pointing_device_set_report(currentReport);
+  //   return false;
 
-  case KC_SLASH:
-    if (!mouse_on)
-      return true;
-    currentReport = pointing_device_get_report();
-    if (record->event.pressed)
-      currentReport.buttons |= MOUSE_BTN2;
-    else
-      currentReport.buttons &= ~MOUSE_BTN2;
-    pointing_device_set_report(currentReport);
-    return false;
+  // case KC_SLASH:
+  //   if (!mouse_on)
+  //     return true;
+  //   currentReport = pointing_device_get_report();
+  //   if (record->event.pressed)
+  //     currentReport.buttons |= MOUSE_BTN2;
+  //   else
+  //     currentReport.buttons &= ~MOUSE_BTN2;
+  //   pointing_device_set_report(currentReport);
+  //   return false;
 
-  default:
-    if (record->event.pressed)
-      mouse_on = false;
-    break;
+    case KC_BTN1:
+    case KC_BTN2:
+    case KC_BTN3:
+    case SCRL_MO:
+      return true;
+
+    default:
+      layer_off(_AUTO_MOUSE);
+      break;
   }
   // switch (keycode) {
   //     case KC_BTN1:

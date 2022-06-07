@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                                  KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_MINS  ,
     KC_LCTL  , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                                  KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_QUOT  ,
     KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     , KC_LBRC  ,              KC_RBRC, KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , KC_EQL   ,
-    _______  , LGUI(KC_L),KC_TAB   , KC_LGUI  , KC_LALT  , MO(_UTIL), KC_SPC   ,              KC_ENT , KC_DEL   , _______  , _______  , _______  , KC_GRV   , KC_BSLS 
+    _______  , LGUI(KC_L),LGUI(KC_6),KC_LGUI  , KC_LALT  , MO(_UTIL), KC_SPC   ,              KC_ENT , KC_DEL   , _______  , _______  , _______  , KC_GRV   , KC_BSLS 
   ),
     
   [_AUTO_MOUSE] = LAYOUT_universal(
@@ -39,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                                  KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_MINS  ,
     KC_LCTL  , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                                  KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_QUOT  ,
     KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     , KC_LBRC  ,              KC_RBRC, KC_N     , KC_M     , KC_BTN1  , KC_BTN3  , KC_BTN2  , KC_EQL   ,
-    _______  , LGUI(KC_L),KC_TAB   , KC_LGUI  , KC_LALT  , MO(_UTIL), KC_SPC   ,              KC_ENT , KC_DEL   , _______  , _______  , _______  , KC_GRV   , SCRL_MO
+    _______  , LGUI(KC_L),LGUI(KC_6),KC_LGUI  , KC_LALT  , MO(_UTIL), KC_SPC   ,              KC_ENT , KC_DEL   , _______  , _______  , _______  , KC_GRV   , SCRL_MO
   ),
 
   [_UTIL] = LAYOUT_universal(
@@ -59,6 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 // clang-format on
+
 
 report_mouse_t pointing_device_task_user(report_mouse_t report)
 {
@@ -134,6 +135,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
       }
       break;
     
+    case KC_P:
+      if(get_mods() & MOD_MASK_GUI){
+        if(record->event.pressed){
+          tap_code(KC_6);
+        }
+        return false;
+      }
+      break;
+    
+
     default:
       break;
   }

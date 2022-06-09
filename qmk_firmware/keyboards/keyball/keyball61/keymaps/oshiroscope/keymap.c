@@ -44,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_UTIL] = LAYOUT_universal(
     _______  , KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_F5    ,                                  KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , KC_F11   ,
-    _______  , KC_Q     , S(KC_DEL), KC_W     , C(KC_K)  , _______  ,                                  _______  , _______  , _______  , _______  , _______  , _______  ,
+    _______  , KC_Q     , S(KC_DEL), KC_W     , C(KC_K)  , _______  ,                                  _______  , KC_LBRC  , LSFT(KC_LBRC),LSFT(KC_RBRC),KC_RBRC,_______,
     _______  , KC_LEFT  , KC_DOWN  , KC_UP    , KC_RIGHT , _______  ,                                  KC_HOME  , KC_LEFT  , KC_DOWN  , KC_UP    , KC_RIGHT , KC_END   ,
     _______  , KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_F5    , _______  ,            _______  , _______  , KC_BTN4  , KC_BTN1  , KC_BTN3  , KC_BTN2  , KC_BTN5  ,
     _______  , _______  , _______  , _______  , _______  , _______  , _______  ,            _______  , _______  , _______  , _______  , _______  , _______  , _______
@@ -139,6 +139,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
       if(get_mods() & MOD_MASK_GUI){
         if(record->event.pressed){
           tap_code(KC_6);
+        }
+        return false;
+      }
+      break;
+    
+    case KC_D:
+      if(get_mods() & MOD_MASK_GUI){
+        if(record->event.pressed){
+          tap_code(KC_5);
         }
         return false;
       }

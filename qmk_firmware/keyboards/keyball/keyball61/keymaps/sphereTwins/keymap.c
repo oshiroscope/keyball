@@ -34,7 +34,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LALT  , LGUI(KC_L),                                 MO(_UTIL), KC_SPC   ,              KC_ENT , KC_DEL   ,                                  KC_GRV   , KC_BSLS 
   ),
     
-  [_AUTO_MOUSE] = LAYOUT_universal(
+  [_AUTO_MOUSE] = LAYOUT_spheretwins(
     KC_ESC   , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,                                  KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , KC_BSPC  ,
     KC_TAB   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                                  KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_MINS  ,
     KC_LCTL  , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                                  KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_QUOT  ,
@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LALT  , LGUI(KC_L)                                  MO(_UTIL), KC_SPC   ,              KC_ENT , KC_DEL   ,                                  KC_GRV   , SCRL_MO
   ),
 
-  [_UTIL] = LAYOUT_universal(
+  [_UTIL] = LAYOUT_spheretwins(
     _______  , KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_F5    ,                                  KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , KC_F11   ,
     _______  , KC_Q     , S(KC_DEL), KC_W     , C(KC_K)  , _______  ,                                  _______  , KC_LBRC  , LSFT(KC_LBRC),LSFT(KC_RBRC),KC_RBRC,_______,
     _______  , KC_LEFT  , KC_DOWN  , KC_UP    , KC_RIGHT , _______  ,                                  KC_HOME  , KC_LEFT  , KC_DOWN  , KC_UP    , KC_RIGHT , KC_END   ,
@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______  , _______  ,                                  _______  , _______  ,            _______  , _______  ,                                  _______  , _______
   ),
 
-  [_PREF] = LAYOUT_universal(
+  [_PREF] = LAYOUT_spheretwins(
     RGB_TOG  , _______  , _______  , _______  , _______  , _______  ,                                  RGB_M_P  , RGB_M_B  , RGB_M_R  , RGB_M_SW , RGB_M_SN , RGB_M_K  ,
     RGB_MOD  , RGB_HUI  , RGB_SAI  , RGB_VAI  , _______  , _______  ,                                  RGB_M_X  , RGB_M_G  , RGB_M_T  , RGB_M_TW , _______  , _______  ,
     RGB_RMOD , RGB_HUD  , RGB_SAD  , RGB_VAD  , _______  , _______  ,                                  CPI_D1K  , CPI_D100 , CPI_I100 , CPI_I1K  , KBC_SAVE , KBC_RST  ,

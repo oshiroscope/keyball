@@ -161,6 +161,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
   return true;
 }
 
+void keyboard_post_init_user() {
+#ifdef RGBLIGHT_ENABLE
+    // Force RGB lights to show test animation without writing EEPROM.
+    rgblight_enable_noeeprom();
+    rgblight_sethsv_noeeprom(100, 238, 120);
+    // rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING);
+#endif
+}
+
 #ifdef OLED_ENABLE
 
 #include "lib/oledkit/oledkit.h"

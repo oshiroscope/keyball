@@ -55,7 +55,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #        define RGBLIGHT_VAL_STEP   12
 #    endif
 #    ifndef RGBLIGHT_HUE_STEP
-#        define RGBLIGHT_HUE_STEP   17
+#        define RGBLIGHT_HUE_STEP   10
 #    endif
 #    ifndef RGBLIGHT_SAT_STEP
 #        define RGBLIGHT_SAT_STEP   17
@@ -76,5 +76,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // To squeeze firmware size
 #undef LOCKING_SUPPORT_ENABLE
 #undef LOCKING_RESYNC_ENABLE
-#define NO_ACTION_MACRO
-#define NO_ACTION_FUNCTION

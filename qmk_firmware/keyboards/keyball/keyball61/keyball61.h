@@ -107,4 +107,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define LAYOUT LAYOUT_right_ball
 #define LAYOUT_universal LAYOUT_no_ball
-#define LAYOUT_shere_twins LAYOUT_dual_ball
+#define LAYOUT_sphere_twins LAYOUT_dual_ball

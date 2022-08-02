@@ -180,6 +180,12 @@ void keyboard_post_init_user()
   rgblight_sethsv_noeeprom(100, 238, 120);
   // rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING);
 #endif
+
+#ifdef RGB_MATRIX_ENABLE
+  rgb_matrix_sethsv_noeeprom(132, 250, 60);
+  // rgb_matrix_mode_noeeprom(RGB_MATRIX_TYPING_HEATMAP);
+  rgb_matrix_mode_noeeprom(RGB_MATRIX_MULTISPLASH);
+#endif
 }
 
 #ifdef OLED_ENABLE

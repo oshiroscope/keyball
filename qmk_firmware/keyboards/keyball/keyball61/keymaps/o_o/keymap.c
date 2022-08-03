@@ -544,15 +544,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 }
 
 layer_state_t layer_state_set_user(layer_state_t state){
-    switch (state){
-    case _UTIL:
-        break;
-    default:
-        if(isAlt){
-          unregister_mods(MOD_MASK_ALT);
-          isAlt = false;
-        }
-        break;
+    if(state != _UTIL && isAlt){
+        unregister_mods(MOD_MASK_ALT);
+        isAlt = false;
     }
+    
+    
+    // switch (state){
+    // case _UTIL:
+    //     break;
+    // default:
+    //     if(isAlt){
+    //     }
+    //     break;
+    // }
     return state;
 }

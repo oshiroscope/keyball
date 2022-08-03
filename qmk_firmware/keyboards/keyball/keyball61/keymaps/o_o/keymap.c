@@ -549,14 +549,5 @@ layer_state_t layer_state_set_user(layer_state_t state){
         isAlt = false;
     }
     
-    
-    // switch (state){
-    // case _UTIL:
-    //     break;
-    // default:
-    //     if(isAlt){
-    //     }
-    //     break;
-    // }
     return state;
 }

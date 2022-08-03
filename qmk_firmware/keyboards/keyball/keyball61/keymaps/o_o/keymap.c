@@ -80,7 +80,7 @@ void keyboard_post_init_user()
 #endif
 
 #ifdef RGB_MATRIX_ENABLE
-  rgb_matrix_sethsv_noeeprom(132, 250, 60);
+  rgb_matrix_sethsv_noeeprom(132, 250, 100);
   // rgb_matrix_mode_noeeprom(RGB_MATRIX_TYPING_HEATMAP);
   rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_MULTISPLASH);
 #endif
@@ -532,7 +532,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     }
     break;
 
-    /* KEYBOARD PET STATUS END */
+  /* KEYBOARD PET STATUS END */
 
   default:
     break;
@@ -544,10 +544,37 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 }
 
 layer_state_t layer_state_set_user(layer_state_t state){
-    if(state != _UTIL && isAlt){
-        unregister_mods(MOD_MASK_ALT);
-        isAlt = false;
+  if(state != _UTIL && isAlt){
+    unregister_mods(MOD_MASK_ALT);
+    isAlt = false;
+  }
+  
+  return state;
+}
+
+void rgb_matrix_indicators_user(void){
+  switch (get_highest_layer(layer_state | default_layer_state)) {
+    case _AUTO_MOUSE:
+    {
+      HSV h_purple = {200, 250, 150};
+      RGB purple = hsv_to_rgb(h_purple);
+      rgb_matrix_set_color(49, purple.r, purple.g, purple.b);
+      rgb_matrix_set_color(54, purple.r, purple.g, purple.b);
+      rgb_matrix_set_color(58, purple.r, purple.g, purple.b);
+      break;
     }
-    
-    return state;
+    case _UTIL:
+    {
+      HSV h_red = {255, 250, 150};
+      RGB red = hsv_to_rgb(h_red);
+      rgb_matrix_set_color(48, red.r, red.g, red.b);
+      rgb_matrix_set_color(53, red.r, red.g, red.b);
+      rgb_matrix_set_color(57, red.r, red.g, red.b);
+      rgb_matrix_set_color(61, red.r, red.g, red.b);
+      break;
+    }
+
+    default:
+      break;
+  }
 }

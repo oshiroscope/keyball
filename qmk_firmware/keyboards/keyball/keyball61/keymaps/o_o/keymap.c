@@ -552,25 +552,47 @@ layer_state_t layer_state_set_user(layer_state_t state){
   return state;
 }
 
+void set_led_co(uint8_t row, uint8_t col, HSV hsv){
+  RGB rgb = hsv_to_rgb(hsv);
+  rgb_matrix_set_color(g_led_config.matrix_co[row][col], rgb.r, rgb.g, rgb.b);
+}
+
 void rgb_matrix_indicators_user(void){
+  static const HSV h_pink = {220, 250, 150};
+  RGB pink = hsv_to_rgb(h_pink);
+
+  static const HSV h_red = {240, 250, 150};
+  RGB red = hsv_to_rgb(h_red);
+
   switch (get_highest_layer(layer_state | default_layer_state)) {
     case _AUTO_MOUSE:
     {
-      HSV h_purple = {200, 250, 150};
-      RGB purple = hsv_to_rgb(h_purple);
-      rgb_matrix_set_color(49, purple.r, purple.g, purple.b);
-      rgb_matrix_set_color(54, purple.r, purple.g, purple.b);
-      rgb_matrix_set_color(58, purple.r, purple.g, purple.b);
+      // mouse button
+      set_led_co(8, 1, h_pink);
+      //rgb_matrix_set_color(g_led_config.matrix_co[8][1], pink.r, pink.g, pink.b);
+      rgb_matrix_set_color(54, pink.r, pink.g, pink.b);
+      rgb_matrix_set_color(58, pink.r, pink.g, pink.b);
       break;
     }
     case _UTIL:
     {
-      HSV h_red = {255, 250, 150};
-      RGB red = hsv_to_rgb(h_red);
+      // cursor
       rgb_matrix_set_color(48, red.r, red.g, red.b);
       rgb_matrix_set_color(53, red.r, red.g, red.b);
       rgb_matrix_set_color(57, red.r, red.g, red.b);
       rgb_matrix_set_color(61, red.r, red.g, red.b);
+
+      // mouse button
+      rgb_matrix_set_color(44, pink.r, pink.g, pink.b);
+      rgb_matrix_set_color(49, pink.r, pink.g, pink.b);
+      rgb_matrix_set_color(54, pink.r, pink.g, pink.b);
+      rgb_matrix_set_color(58, pink.r, pink.g, pink.b);
+      rgb_matrix_set_color(62, pink.r, pink.g, pink.b);
+
+      // util key
+      //set_led_co(1, 1, h_pink);
+      rgb_matrix_set_color(13, pink.r, pink.g, pink.b);
+
       break;
     }
 

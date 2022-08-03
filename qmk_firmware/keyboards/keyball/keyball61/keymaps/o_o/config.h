@@ -85,4 +85,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define ENABLE_RGB_MATRIX_SOLID_SPLASH
 #define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 
+// https://github.com/qmk/qmk_firmware/blob/5a727dbc6dc51b2d7d90e5d2a7e99ca3435153be/docs/feature_rgb_matrix.md
+#define SPLIT_LAYER_STATE_ENABLE
+
 #endif

@@ -417,16 +417,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
   }
 
   
-  // /* ALT + TAB */
+  /* ALT + TAB */
 
-  // if (layer_state_is(_UTIL))
-  // {
-  //   if(keycode == KC_TAB && record->event.pressed) 
-  //   {
-  //     isAlt = true;
-  //     register_mods(MOD_MASK_ALT);
-  //   }
-  // }
+  if (layer_state_is(_UTIL))
+  {
+    if(keycode == KC_TAB && record->event.pressed) 
+    {
+      isAlt = true;
+      register_mods(MOD_MASK_ALT);
+    }
+  }
 
   switch (keycode)
   {
@@ -543,17 +543,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
   return true;
 }
 
-
-// layer_state_t layer_state_set_user(layer_state_t state){
-//     switch (state){
-//     case _UTIL:
-//         break;
-//     default:
-//         if(isAlt){
-//           unregister_mods(MOD_MASK_ALT);
-//           isAlt = false;
-//         }
-//         break;
-//     }
-//     return state;
-// }
+layer_state_t layer_state_set_user(layer_state_t state){
+    switch (state){
+    case _UTIL:
+        break;
+    default:
+        if(isAlt){
+          unregister_mods(MOD_MASK_ALT);
+          isAlt = false;
+        }
+        break;
+    }
+    return state;
+}

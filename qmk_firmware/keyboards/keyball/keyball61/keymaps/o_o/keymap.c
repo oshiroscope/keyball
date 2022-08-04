@@ -558,10 +558,11 @@ void set_led_co(uint8_t row, uint8_t col, HSV hsv){
 }
 
 void rgb_matrix_indicators_user(void){
-  static const HSV h_pink = {220, 250, 150};
-  static const HSV h_red = {240, 250, 150};
-  static const HSV h_green = {80, 250, 150};
   static const HSV h_white = {0, 0, 150};
+  static const HSV h_yellow = {0, 250, 150};
+  static const HSV h_green = {80, 250, 150};
+  static const HSV h_pink = {220, 250, 150};
+  //static const HSV h_red = {240, 250, 150};
 
   switch (get_highest_layer(layer_state | default_layer_state)) {
     case _AUTO_MOUSE:
@@ -576,10 +577,10 @@ void rgb_matrix_indicators_user(void){
     case _UTIL:
     {
       // cursor
-      set_led_co(7, 1, h_red);
-      set_led_co(7, 2, h_red);
-      set_led_co(7, 4, h_red);
-      set_led_co(7, 5, h_red);
+      set_led_co(7, 1, h_yellow);
+      set_led_co(7, 2, h_yellow);
+      set_led_co(7, 4, h_yellow);
+      set_led_co(7, 5, h_yellow);
 
       // mouse button
       set_led_co(8, 0, h_pink);

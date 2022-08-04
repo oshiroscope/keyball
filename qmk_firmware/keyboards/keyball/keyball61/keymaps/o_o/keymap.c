@@ -564,6 +564,10 @@ void rgb_matrix_indicators_user(void){
   static const HSV h_red = {240, 250, 150};
   RGB red = hsv_to_rgb(h_red);
 
+  static const HSV h_green = {40, 250, 150};
+
+  static const HSV h_white = {0, 0, 150};
+
   switch (get_highest_layer(layer_state | default_layer_state)) {
     case _AUTO_MOUSE:
     {
@@ -590,8 +594,11 @@ void rgb_matrix_indicators_user(void){
       rgb_matrix_set_color(62, pink.r, pink.g, pink.b);
 
       // util key
-      //set_led_co(1, 1, h_pink);
-      rgb_matrix_set_color(13, pink.r, pink.g, pink.b);
+      set_led_co(1, 1, h_pink);
+      set_led_co(3, 1, h_pink);
+      set_led_co(3, 2, h_green);
+      set_led_co(3, 4, h_white);
+      //rgb_matrix_set_color(13, pink.r, pink.g, pink.b);
 
       break;
     }

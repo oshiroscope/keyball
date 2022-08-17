@@ -23,6 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 #include "quantum.h"
+#include "deferred_exec.h"
+
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -58,13 +60,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     RESET    , _______  , _______  , _______  , _______  , KC_RGHT  , _______  ,            _______  , KC_BSPC  ,                                  _______  , RESET
   ),
 };
-// clang-format on
+// clang-forma t on
+
+deferred_token mouse_layer_token = INVALID_DEFERRED_TOKEN;
+
+uint32_t mouse_layer_cb(uint32_t trigger_time, void *cb_arg){
+  layer_off(_AUTO_MOUSE);
+  mouse_layer_token = INVALID_DEFERRED_TOKEN;
+  return 0;
+}
 
 report_mouse_t pointing_device_task_user(report_mouse_t report)
 {
   if (report.x > 2 || report.x < -2 || report.y > 2 || report.y < -2)
   {
     layer_on(_AUTO_MOUSE);
+    if (mouse_layer_token == INVALID_DEFERRED_TOKEN) {
+      mouse_layer_token = defer_exec(500, mouse_layer_cb, NULL);
+	  } else {
+      extend_deferred_exec(mouse_layer_token, 500);
+    }
   }
 
   return report;

@@ -7,3 +7,5 @@ OLED_ENABLE = yes
 VIA_ENABLE = no
 
 WPM_ENABLE = yes
+
+DEFERRED_EXEC_ENABLE = yes

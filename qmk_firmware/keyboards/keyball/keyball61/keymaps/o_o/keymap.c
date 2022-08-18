@@ -72,7 +72,7 @@ uint32_t mouse_layer_cb(uint32_t trigger_time, void *cb_arg){
 
 report_mouse_t pointing_device_task_user(report_mouse_t report)
 {
-  if (report.x > 2 || report.x < -2 || report.y > 2 || report.y < -2)
+  if (report.x > 2 || report.x < -2 || report.y > 2 || report.y < -2 || report.v > 2 || report.v < -2 || report.h > 2 || report.h < -2)
   {
     layer_on(_AUTO_MOUSE);
     if (mouse_layer_token == INVALID_DEFERRED_TOKEN) {

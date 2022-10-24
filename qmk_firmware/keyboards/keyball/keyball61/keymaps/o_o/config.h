@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #ifdef RGB_MATRIX_ENABLE
-// #define RIGHT_BALL
+//#define RIGHT_BALL
 // #    define LEFT_BALL
 #define DUAL_BALL
 // #    define NO_BALL
@@ -57,7 +57,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     {                    \
         34, 34           \
     }
-#define DRIVER_LED_TOTAL 68
+#define DRIVER_LED_TOTAL 71
 #endif
 #ifdef NO_BALL
 #define RGB_MATRIX_SPLIT \

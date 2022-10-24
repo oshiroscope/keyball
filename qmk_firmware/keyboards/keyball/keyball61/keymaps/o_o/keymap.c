@@ -33,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                                  KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_MINS  ,
     KC_LCTL  , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                                  KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_QUOT  ,
     KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     , KC_LGUI  ,              KC_RBRC, KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , KC_EQL   ,
-    KC_LALT  , KC_LGUI  , _______  , _______  , _______  , MO(_UTIL), KC_SPC   ,              KC_ENT , KC_DEL   ,                                  KC_GRV   , KC_BSLS 
+    KC_LALT  , MO(_PREF), _______  , _______  , KC_LCTL  , MO(_UTIL), KC_SPC   ,              KC_ENT , KC_DEL   ,                                  KC_GRV   , KC_BSLS 
   ),
     
   [_AUTO_MOUSE] = LAYOUT_right_ball(
@@ -60,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     RESET    , _______  , _______  , _______  , _______  , KC_RGHT  , _______  ,            _______  , KC_BSPC  ,                                  _______  , RESET
   ),
 };
-// clang-forma t on
+// clang-format on
 
 deferred_token mouse_layer_token = INVALID_DEFERRED_TOKEN;
 
@@ -647,6 +647,7 @@ void rgb_matrix_indicators_user(void){
   static const HSV h_yellow = {0, 250, 150};
   static const HSV h_green = {80, 250, 150};
   static const HSV h_pink = {220, 250, 150};
+  static const HSV h_blue = {120, 250, 150};
   //static const HSV h_red = {240, 250, 150};
 
   switch (get_highest_layer(layer_state | default_layer_state)) {
@@ -679,6 +680,7 @@ void rgb_matrix_indicators_user(void){
       set_led_co(3, 1, h_pink);
       set_led_co(3, 2, h_green);
       set_led_co(3, 4, h_white);
+      set_led_co(3, 5, h_blue);
 
       break;
     }

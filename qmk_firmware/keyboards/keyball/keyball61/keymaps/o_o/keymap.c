@@ -29,19 +29,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_right_ball(
-    KC_ESC   , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,                                  KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , KC_BSPC  ,
+    KC_ESC   , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,                                  KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , KC_EQL   ,
     KC_TAB   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                                  KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_MINS  ,
-    KC_LCTL  , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                                  KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_QUOT  ,
-    KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     , KC_LGUI  ,              KC_RBRC, KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , KC_EQL   ,
-    KC_LALT  , MO(_PREF), _______  , _______  , KC_LCTL  , MO(_UTIL), KC_SPC   ,              KC_ENT , KC_DEL   ,                                  KC_GRV   , KC_BSLS 
+    KC_LCTL  , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                                  KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_GRV   ,
+    KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     , KC_LGUI  ,              KC_DEL , KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , KC_QUOT  ,
+    KC_LALT  , MO(_PREF), _______  , _______  , KC_LCTL  , MO(_UTIL), KC_SPC   ,              KC_ENT , KC_BSPC  ,                                  _______  , KC_BSLS 
   ),
     
   [_AUTO_MOUSE] = LAYOUT_right_ball(
-    KC_ESC   , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,                                  KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , KC_BSPC  ,
+    KC_ESC   , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,                                  KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , KC_EQL   ,
     KC_TAB   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                                  KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_MINS  ,
-    KC_LCTL  , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                                  KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_QUOT  ,
-    KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     , KC_LGUI  ,              KC_RBRC, KC_N     , KC_M     , KC_BTN1  , KC_BTN2  , KC_SLSH  , KC_EQL   ,
-    KC_LALT  , KC_LGUI  , _______  , _______  , _______  , MO(_UTIL), KC_SPC   ,              KC_ENT , KC_DEL   ,                                  KC_GRV   , SCRL_MO
+    KC_LCTL  , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                                  KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_GRV   ,
+    KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     , KC_LGUI  ,              KC_DEL , KC_N     , KC_M     , KC_BTN1  , KC_BTN2  , KC_SLSH  , KC_QUOT  ,
+    KC_LALT  , KC_LGUI  , _______  , _______  , _______  , MO(_UTIL), KC_SPC   ,              KC_ENT , KC_BSPC  ,                                  _______  , SCRL_MO
   ),
 
   [_UTIL] = LAYOUT_right_ball(
@@ -87,13 +87,6 @@ report_mouse_t pointing_device_task_user(report_mouse_t report)
 
 void keyboard_post_init_user()
 {
-#ifdef RGBLIGHT_ENABLE
-  // Force RGB lights to show test animation without writing EEPROM.
-  rgblight_enable_noeeprom();
-  rgblight_sethsv_noeeprom(100, 238, 120);
-  // rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING);
-#endif
-
 #ifdef RGB_MATRIX_ENABLE
   rgb_matrix_sethsv_noeeprom(132, 250, 100);
   // rgb_matrix_mode_noeeprom(RGB_MATRIX_TYPING_HEATMAP);
@@ -101,6 +94,7 @@ void keyboard_post_init_user()
 #endif
 }
 
+// #if 0
 #ifdef OLED_ENABLE
 
 #include "lib/oledkit/oledkit.h"
@@ -656,7 +650,7 @@ void rgb_matrix_indicators_user(void){
       // mouse button
       set_led_co(8, 1, h_pink);
       set_led_co(8, 2, h_pink);
-      set_led_co(8, 4, h_pink);
+      // set_led_co(8, 4, h_pink);
 
       break;
     }

@@ -34,10 +34,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #ifdef RGB_MATRIX_ENABLE
-//#define RIGHT_BALL
-// #    define LEFT_BALL
+// #define RIGHT_BALL
+// #define LEFT_BALL
 #define DUAL_BALL
-// #    define NO_BALL
+// #define NO_BALL
 #ifdef RIGHT_BALL
 #define RGB_MATRIX_SPLIT \
     {                    \
